@@ -2,8 +2,8 @@ import { Component, OnInit, TemplateRef } from '@angular/core';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
-import { Evento } from '../models/Evento';
-import { EventoService } from '../services/evento.service';
+import { Evento } from '../../models/Evento';
+import { EventoService } from '../../services/evento.service';
 
 @Component({
   selector: 'app-eventos',
@@ -57,9 +57,9 @@ alterarImg(){
     this.spinner.show();
 
     setTimeout(() => {
-      /** spinner ends after 2 seconds */
+      /** spinner ends after x seconds */
 
-    }, 2000);
+    }, 10000);
 
   }
 
@@ -72,6 +72,11 @@ alterarImg(){
       error: (error: any) => {
         this.spinner.hide();
         this.toastr.error('Erro ao recuperar os eventos!', 'Erro!');
+
+        setTimeout(() => {
+          /** spinner ends after x seconds */
+
+        }, 2000);
       },
       complete: () => this.spinner.hide()
     });

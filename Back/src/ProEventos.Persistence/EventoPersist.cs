@@ -26,7 +26,7 @@ namespace ProEventos.Persistence
             if(includePalestrantes)
             {
                 query = query
-                    .Include(e => e.PalestranteEventos)
+                    .Include(e => e.PalestrantesEventos)
                     .ThenInclude(pe => pe.Palestrante);
                     
             }
@@ -45,7 +45,7 @@ namespace ProEventos.Persistence
             if(includePalestrantes)
             {
                 query = query
-                    .Include(e => e.PalestranteEventos)
+                    .Include(e => e.PalestrantesEventos)
                     .ThenInclude(pe => pe.Palestrante);
                     
             }
@@ -65,7 +65,7 @@ namespace ProEventos.Persistence
             if(includePalestrantes)
             {
                 query = query
-                    .Include(e => e.PalestranteEventos)
+                    .Include(e => e.PalestrantesEventos)
                     .ThenInclude(pe => pe.Palestrante);
                     
             }
