@@ -78,10 +78,13 @@ namespace ProEventos.API.Controllers
         {
             try
             {
+                // if(ModelState.IsValid)
+
                 var evento = await _eventoService.AddEventos(model);
                 if(evento == null) return BadRequest("Erro ao adicionar evento");
             
                 return Ok(evento);
+
             }
             catch (Exception ex)
             {
