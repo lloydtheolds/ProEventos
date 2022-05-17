@@ -1,7 +1,7 @@
 <app-titulo [titulo]="'Perfil'"[icone]="'fa fa-user'"></app-titulo>
 
 <div class="card rounded shadow-sm">
-<form>
+<form [formGroup]="form" class="p-1">
 	<div class="row p-3">
 		<div class="col-lg-3 pt-1">
 			<div class="card mb-3">
@@ -9,27 +9,31 @@
 				<div class="d-flex align-self-center pt-3">
 					<a>
 						<img
-						src="https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcRbezqZpEuwGSvitKy3wrwnth5kysKdRqBW54cAszm_wiutku3R"
-						name="aboutme" width="120" height="120" class="rounded-circle">
+						src="../../../../assets/perfil.jpeg"
+						name="perfil" width="180" height="180" class="rounded-circle">
 					</a>
 				</div>
 				<div class="card-body">
-					<div class="h4 text-center mb-3">@UserName</div>
-					<div class="h7 text-bold pb-1"><b>Nome:</b> Miracles Lee Cross</div>
+					<div class="h4 text-center mb-3">@MatsFellp</div>
+					<div class="h7 text-bold pb-1"><b>Nome:</b> Matheus Felipe Costa Santos</div>
 					<div class="h7">
-						Developer of web applications, JavaScript, PHP, Java, Python, Ruby, Java, Node.js,
-						etc.
-					</div>
+          <ul>
+            <li>Student of Computer Science at UVV</li>
+						<li>Novice Programmer on C#, Js, C</li>
+            <li>PRODEST Intern</li>
+            <li>Novice Pixel Artist</li>
+					</ul>
+          </div>
 				</div>
 				<ul class="list-group list-group-flush">
 					<li class="list-group-item">
 						<div class="row">
 							<div class="col-6 text-center border-right">
-								<div class="h5">1342</div>
-								<div class="h6 text-muted">Eventos Ministrados</div>
+								<div class="h5">2060</div>
+								<div class="h6 text-muted">Carga Horária Restante</div>
 							</div>
 							<div class="col-6 text-center">
-								<div class="h5">1342</div>
+								<div class="h5">380</div>
 								<div class="h6 text-muted">Eventos Participados</div>
 							</div>
 						</div>
@@ -46,8 +50,8 @@
 				<div class="form-group col">
 					<label>Título</label>
 					<select class="form-control">
-						<option value=""></option>
-						<option value="0">Não Quero</option>
+						<option value="">---- Informe seu Titulo ----</option>
+						<option value="0">Graduando(a)</option>
 						<option value="Senhorita">Tecnólogo(a)</option>
 						<option value="Senhorita">Bacharel</option>
 						<option value="Senhorita">Especialista</option>
@@ -59,28 +63,55 @@
 				</div>
 				<div class="form-group col-sm-5">
 					<label>Primeiro Nome</label>
-					<input type="text" class="form-control"/>
-
+					<input type="text" class="form-control"
+          [ngClass]="{'is-invalid': m.primeiroNomePerfil.errors && m.primeiroNomePerfil.touched}"
+          formControlName="primeiroNomePerfil" placeholder=""/>
+          <div *ngIf="m.primeiroNomePerfil.errors?.required && m.primeiroNomePerfil.touched" class="invalid-feedback">
+            Primeiro Nome Obrigatório
+            </div>
+            <div *ngIf="m.primeiroNomePerfil.errors?.maxlength && m.primeiroNomePerfil.touched" class="invalid-feedback">
+              Número máximo de caracteres é 50
+              </div>
 				</div>
 				<div class="form-group col-sm-5">
 					<label>Último nome</label>
-					<input type="text" class="form-control"/>
-
+					<input type="text" class="form-control"
+          [ngClass]="{'is-invalid': m.ultimoNomePerfil.errors && m.ultimoNomePerfil.touched}"
+          formControlName="ultimoNomePerfil" placeholder=""/>
+          <div *ngIf="m.ultimoNomePerfil.errors?.required && m.ultimoNomePerfil.touched" class="invalid-feedback">
+            Primeiro Nome Obrigatório
+            </div>
+            <div *ngIf="m.ultimoNomePerfil.errors?.maxlength && m.ultimoNomePerfil.touched" class="invalid-feedback">
+              Número máximo de caracteres é 50
+              </div>
 				</div>
 			</div>
 			<div class="form-row">
 				<div class="form-group col-sm-5">
 					<label>E-mail</label>
-					<input type="text" class="form-control" />
+					<input type="text" class="form-control"
+          [ngClass]="{'is-invalid': m.emailPerfil.errors && m.emailPerfil.touched}"
+          formControlName="emailPerfil" placeholder=""/>
+          <div *ngIf="m.emailPerfil.errors?.required" class="invalid-feedback">
+            E-mail é Obrigatório
+          </div>
+          <div *ngIf="m.emailPerfil.errors?.email" class="invalid-feedback">
+            Digite um E-mail Válido
+          </div>
 				</div>
 				<div class="form-group col-sm-4">
 					<label>Telefone</label>
-					<input type="text" class="form-control" />
+					<input type="text" class="form-control"
+          [ngClass]="{'is-invalid': m.telefonePerfil.errors && m.telefonePerfil.touched}"
+          formControlName="telefonePerfil" placeholder=""/>
+          <div *ngIf="m.telefonePerfil.errors?.required" class="invalid-feedback">
+            Telefone é Obrigatório
+          </div>
 				</div>
 				<div class="form-group col-sm">
 					<label>Função</label>
 					<select class="form-control">
-						<option value=""></option>
+						<option value="">---- Informe sua Função ----</option>
 						<option value="Participante">Participante</option>
 						<option value="Palestrante">Palestrante</option>
 					</select>
@@ -97,18 +128,34 @@
 			<div class="form-row">
 				<div class="form-group col-sm">
 					<label>Senha</label>
-					<input type="password" class="form-control" />
+					<input type="password" class="form-control"
+          [ngClass]="{'is-invalid': m.senhaPerfil.errors && m.senhaPerfil.touched}"
+          formControlName="senhaPerfil" placeholder=""/>
+          <div *ngIf="m.senhaPerfil.errors?.required" class="invalid-feedback">
+            Informe uma senha
+          </div>
+          <div *ngIf="m.senhaPerfil.errors?.minlength" class="invalid-feedback">
+            Senha deve ter no mínimo 6 Caracteres
+          </div>
 				</div>
 				<div class="form-group col-sm">
 					<label>Confirmar Senha</label>
-					<input type="password" class="form-control" />
+					<input type="password" class="form-control"
+          [ngClass]="{'is-invalid': m.confirmarSenhaPerfil.errors && m.confirmarSenhaPerfil.touched}"
+          formControlName="confirmarSenhaPerfil" placeholder=""/>
+          <div *ngIf="m.confirmarSenhaPerfil.errors?.required" class="invalid-feedback">
+            Confirme sua senha
+          </div>
+          <div *ngIf="m.confirmarSenhaPerfil.errors?.mustMatch" class="invalid-feedback">
+            As senhas não batem
+          </div>
 				</div>
 			</div>
 		</div>
 	</div>
 	<div class="card-footer">
 		<div class="d-flex">
-			<button class="btn btn-outline-secondary mr-auto border">
+			<button class="btn btn-outline-secondary mr-auto border" (click)="resetForm()">
 				Cancelar Alteração
 			</button>
 			<button class="btn btn-success">
